@@ -7,7 +7,6 @@
 [![PowerShell](https://img.shields.io/badge/PowerShell-7.0+-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](https://github.com/PowerShell/PowerShell)
 [![Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com)
 [![Sentinel](https://img.shields.io/badge/Microsoft_Sentinel-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://azure.microsoft.com/en-us/products/microsoft-sentinel)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 *Stop overpaying for your Azure SIEM. Let automation find the optimal pricing tier for every workspace.*
 
@@ -21,10 +20,6 @@ Microsoft Sentinel and Log Analytics use a tiered pricing model where **capacity
 
 This tool was built to solve that problem — it automatically analyzes your actual data usage and recommends the most cost-effective tier.
 
-> 📝 **Further Reading:**
-> - [Optimize Microsoft Sentinel Pricing](https://medium.com/@koosg/optimize-microsoft-sentinel-pricing-ca9901840b75) — *Feb 2022*
-> - [Auto-Scale Your Sentinel Pricing Tiers](https://medium.com/@koosg/auto-scale-your-sentinel-pricing-tiers-3d1f46b4c6ce) — *Nov 2022*
-
 ---
 
 ## 🎯 What It Does
@@ -37,13 +32,6 @@ This tool was built to solve that problem — it automatically analyzes your act
 | **4** | 🛡️ Sentinel Check | Detects Sentinel-enabled workspaces and applies separate Sentinel thresholds |
 | **5** | 📋 Report Generation | Outputs results as a formatted table + CSV export |
 | **6** | ✏️ ARM Auto-Update | Optionally updates ARM template parameter files with optimal values |
-
----
-
-## 🖥️ Console Output Preview
-
-![Console output showing workspace analysis](images/powershell-output0.png)
-> *The optimizer scanning workspaces and comparing current vs. optimal pricing tiers*
 
 ---
 
@@ -65,14 +53,14 @@ This tool was built to solve that problem — it automatically analyzes your act
 
 ```powershell
 ./powershell-script/AzSentinelPricingOptimizer.ps1 `
-    -subscriptionId 'c2a97e8b-592d-442a-aef5-9e5a6347350d'
+    -subscriptionId '<your-subscription-id>'
 ```
 
 ### Auto-Update ARM Parameters
 
 ```powershell
 ./powershell-script/AzSentinelPricingOptimizer.ps1 `
-    -subscriptionId 'c2a97e8b-592d-442a-aef5-9e5a6347350d' `
+    -subscriptionId '<your-subscription-id>' `
     -updateArmParameters $true `
     -parametersFilePath 'arm-templates/'
 ```
@@ -93,7 +81,7 @@ This tool was built to solve that problem — it automatically analyzes your act
 
 ## 📊 Pricing Tier Thresholds
 
-The thresholds below are calculated from **West Europe list prices** as of **February 2022**. If your region or pricing differs, use the [Excel Calculator](excel-calculator/sentinel-pricing-tiers-and-recommendation-thresholds.xlsx) to recalculate.
+The thresholds below are calculated from **West Europe list prices**. If your region or pricing differs, use the bundled Excel calculator to recalculate.
 
 <table>
 <tr>
@@ -112,9 +100,6 @@ The thresholds below are calculated from **West Europe list prices** as of **Feb
 <tr><td>2000 GB/day</td><td>1953</td><td>2000 GB/day</td><td>1897</td></tr>
 <tr><td>5000 GB/day</td><td>4849</td><td>5000 GB/day</td><td>4730</td></tr>
 </table>
-
-![Excel calculator for custom thresholds](images/excel-calculator.png)
-> *Use the bundled Excel spreadsheet to recalculate thresholds for your own pricing*
 
 ---
 
@@ -143,7 +128,6 @@ sentinel-pricing/
 ├── 📂 github-workflow/
 │   ├── sentinel-pricing-auto-scale.yml     # GitHub Actions workflow
 │   └── pull-request-template.md            # PR template for auto-scaling
-├── 📂 images/                              # Documentation screenshots
 └── 📄 readme.md                            # This file
 ```
 
